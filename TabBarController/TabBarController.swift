@@ -23,7 +23,7 @@ class TabBarController: UITabBarController {
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
         profileViewController = UINavigationController.init(rootViewController: ProfileViewController())
         self.viewControllers = [feedViewController, profileViewController]
-        self.tabBar.backgroundColor = .gray
+        self.tabBar.backgroundColor = .white
     }
     
     func setUpFeedItem(){
