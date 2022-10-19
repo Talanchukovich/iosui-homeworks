@@ -8,25 +8,49 @@
 import UIKit
 
 class ProfileViewController: UIViewController{
-   
+    
     var profileHeaderView = ProfileHeaderView()
     private var statusText = "Укажите статус"
+    let changeTitleButtton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Set title", for: .normal)
+        button.backgroundColor = .blue
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpVie()
-        profileHeaderView.addView()
-        profileHeaderView.setLayout()
-    }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        profileHeaderView.frame.size = view.frame.size
+        setView()
+        addView()
+        profileHeaderView.setView()
+        setLayout()
+        addTargets()
     }
     
-    func setUpVie(){
+    func addView(){
+        view.addSubview(profileHeaderView)
+        view.addSubview(changeTitleButtton)
+    }
+    func setView(){
         view.backgroundColor = .lightGray
         self.navigationItem.title = "Profile"
-        view.addSubview(profileHeaderView)
+    }
+    
+    func setLayout(){
+        NSLayoutConstraint.activate([profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                                     profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     profileHeaderView.heightAnchor.constraint(equalToConstant: 220)])
+        
+        NSLayoutConstraint.activate([changeTitleButtton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     changeTitleButtton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     changeTitleButtton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     changeTitleButtton.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    func addTargets(){
         profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         profileHeaderView.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }

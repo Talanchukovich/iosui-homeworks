@@ -9,13 +9,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let contentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "catImage")
@@ -37,7 +30,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-     var statusLabel: UILabel = {
+    let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Укажите статус"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -46,7 +39,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-     let statusTextField: UITextField = {
+    let statusTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Укажите статус"
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -75,7 +68,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    func addView(){
+    private func addView(){
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
@@ -83,7 +76,7 @@ class ProfileHeaderView: UIView {
         self.addSubview(setStatusButton)
     }
     
-    func setLayout(){
+    private func setLayout(){
         NSLayoutConstraint.activate([avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
                                      avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
                                      avatarImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -99,10 +92,17 @@ class ProfileHeaderView: UIView {
         
         NSLayoutConstraint.activate([statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
                                      statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -60)])
-
+        
         NSLayoutConstraint.activate([statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
                                      statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
                                      statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
                                      statusTextField.heightAnchor.constraint(equalToConstant: 40)])
+    }
+    
+    func setView(){
+        self.backgroundColor = .lightGray
+        self.translatesAutoresizingMaskIntoConstraints = false
+        addView()
+        setLayout()
     }
 }
