@@ -16,7 +16,7 @@ class LoginView: UIView {
         return image
     }()
     
-    private let loginStuckView: UIStackView = {
+    let loginStuckView: UIStackView = {
         let stuck = UIStackView()
         stuck.axis = .vertical
         stuck.spacing = 16
@@ -118,7 +118,8 @@ class LoginView: UIView {
         NSLayoutConstraint.activate([loginStuckView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
                                      loginStuckView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                                      loginStuckView.heightAnchor.constraint(equalToConstant: 166),
-                                     loginStuckView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120)])
+                                     loginStuckView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120)
+                                    ])
         
         NSLayoutConstraint.activate([midelAuthorizationView.leadingAnchor.constraint(equalTo: authorizationView.leadingAnchor),
                                      midelAuthorizationView.trailingAnchor.constraint(equalTo: authorizationView.trailingAnchor),
@@ -139,7 +140,7 @@ class LoginView: UIView {
     }
     
     func setView(){
-        self.backgroundColor = .white
+        self.backgroundColor = .green
         self.translatesAutoresizingMaskIntoConstraints = false
         addView()
         setLayout()
