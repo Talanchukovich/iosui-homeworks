@@ -23,7 +23,7 @@ class TabBarController: UITabBarController {
     func setUpTabBar(){
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
         profileViewController = UINavigationController.init(rootViewController: ProfileViewController())
-        loginViewController = UINavigationController.init(rootViewController: LogInViewControlle())
+        loginViewController = UINavigationController.init(rootViewController: LogInViewController())
         self.viewControllers = [feedViewController, loginViewController]
         self.tabBar.backgroundColor = .systemGray6
         self.tabBar.layer.borderWidth = 0.3

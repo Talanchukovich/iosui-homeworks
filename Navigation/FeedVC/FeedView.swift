@@ -9,7 +9,9 @@ import UIKit
 
 class FeedView: UIView {
     
-    let buttonStuck: UIStackView = {
+    var delegate: ButtonDelegate?
+    
+    private let buttonStuck: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
@@ -18,7 +20,7 @@ class FeedView: UIView {
         return stack
     }()
     
-    let postButton1: UIButton = {
+    private let postButton1: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
         postButton.layer.borderWidth = 3
@@ -30,7 +32,7 @@ class FeedView: UIView {
         return postButton
     }()
     
-    let postButton2: UIButton = {
+    private let postButton2: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
         postButton.layer.borderWidth = 3
@@ -42,23 +44,31 @@ class FeedView: UIView {
         return postButton
     }()
     
-    private func addView(){
-        self.addSubview(buttonStuck)
-        buttonStuck.addArrangedSubview(postButton1)
-        buttonStuck.addArrangedSubview(postButton2)
+    private func setLayout(){
+        NSLayoutConstraint.activate([
+            buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            buttonStuck.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            buttonStuck.heightAnchor.constraint(equalToConstant: 110),
+            buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
     }
     
-    private func setLayout(){
-        NSLayoutConstraint.activate([buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     buttonStuck.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                                     buttonStuck.heightAnchor.constraint(equalToConstant: 110),
-                                     buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
+    
+    private func addTargets(){
+        postButton1.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
+        postButton2.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
+    }
+    
+    @objc private func actionPostButton(_ sender: UIButton){
+        delegate?.onButtonTap(sender: sender)
     }
     
     func setView(){
         self.backgroundColor = .lightGray
         self.translatesAutoresizingMaskIntoConstraints = false
-        addView()
+        self.addSubview(buttonStuck)
+        buttonStuck.addArrangedSubview(postButton1)
+        buttonStuck.addArrangedSubview(postButton2)
         setLayout()
+        addTargets()
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    let allerButton: UIButton = {
+    private let allerButton: UIButton = {
         let allerButton = UIButton()
         allerButton.setTitle("Allert", for: .normal)
         allerButton.tintColor = .white
@@ -23,24 +23,22 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        view.addSubview(allerButton)
-        setLayout()
-        setAlertButton()
+        setView()
     }
     
-    func setLayout(){
-        NSLayoutConstraint.activate([allerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     allerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     allerButton.heightAnchor.constraint(equalToConstant: 50),
-                                     allerButton.widthAnchor.constraint(equalToConstant: 200)])
+    private func setLayout(){
+        NSLayoutConstraint.activate([
+            allerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            allerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            allerButton.heightAnchor.constraint(equalToConstant: 50),
+            allerButton.widthAnchor.constraint(equalToConstant: 200)])
     }
     
-    func setAlertButton(){
+    private func setAlertButton(){
         allerButton.addTarget(self, action: #selector(allerButtonAction), for: .touchUpInside)
     }
     
-    @objc func allerButtonAction(){
+    @objc private func allerButtonAction(){
         let alertController = UIAlertController(title: "Внимание", message: "Выберете действие", preferredStyle: .actionSheet)
         let alert1 = UIAlertAction(title: "Печать Alert 1", style: .default){_ in
             print("Alert 1")
@@ -55,5 +53,12 @@ class InfoViewController: UIViewController {
         alertController.addAction(alert2)
         alertController.addAction(cancelAlert)
         self.present(alertController, animated: true)
+    }
+    
+    private func setView(){
+        view.backgroundColor = .lightGray
+        view.addSubview(allerButton)
+        setAlertButton()
+        setLayout()
     }
 }
