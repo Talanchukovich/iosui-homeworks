@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */; };
+		802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */; };
 		807E03F028FFD0CA0085110B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E03EF28FFD0CA0085110B /* AppDelegate.swift */; };
 		807E03F228FFD0CA0085110B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E03F128FFD0CA0085110B /* SceneDelegate.swift */; };
 		807E03F428FFD0CA0085110B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E03F328FFD0CA0085110B /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		807E03EC28FFD0CA0085110B /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		807E03EF28FFD0CA0085110B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		807E03F128FFD0CA0085110B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				807E040A28FFD80F0085110B /* ProfileViewController.swift */,
+				802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */,
 			);
 			path = "Profile VC";
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				807E041228FFE34D0085110B /* FeedView.swift in Sources */,
 				807E03F428FFD0CA0085110B /* ViewController.swift in Sources */,
+				802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */,
 				807E040728FFD6EE0085110B /* TabBarController.swift in Sources */,
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
