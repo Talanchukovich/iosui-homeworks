@@ -34,7 +34,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Укажите статус!"
+        label.text = "Укажите статус"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(statusTextField)
         self.addSubview(setStatusButton)
         
-        setStatusButton.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
+        setStatusButton.addTarget(self, action: #selector(onButtonTap) , for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
@@ -115,12 +115,5 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc private func onButtonTap(_ sender: UIButton){
         delegate?.onButtonTap(sender: sender)
-    }
-    
-    func setStatusLabel(statusText: String){
-        if statusTextField.text?.isEmpty == false {
-            statusLabel.text = statusText
-            statusTextField.text?.removeAll()
-        }
     }
 }

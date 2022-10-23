@@ -11,6 +11,10 @@ class LoginView: UIView {
     
     var delegate: ButtonDelegate?
     
+    func free(){
+        print(#function)
+    }
+    
     private let logoImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "logo")
