@@ -13,6 +13,7 @@ class LogInViewController: UIViewController {
     private var activTextfield: UITextField? = nil
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -20,9 +21,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        addView()
-        setLayout()
-        loginView.setView()
+        setView()
         addDelegate()
         addTapGesture()
     }
@@ -37,15 +36,12 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func addView(){
+    func setView(){
         view.addSubview(scrollView)
         scrollView.addSubview(loginView)
-    }
-    
-    func setLayout(){
+        loginView.setView()
         
         NSLayoutConstraint.activate([
-            //scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -56,7 +52,7 @@ class LogInViewController: UIViewController {
             loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             loginView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)])
     }
-    
+        
     func addDelegate(){
         loginView.loginTextField.delegate = self
         loginView.passwordTextField.delegate = self
@@ -81,14 +77,9 @@ class LogInViewController: UIViewController {
     @objc private func keyboardWillShow(notification: NSNotification){
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
         let keyboardHeight = keyboardSize.height
-        let loginStuckMaxY = loginView.loginStuckView.frame.maxY //+ view.layoutMargins.top
+        let loginStuckMaxY = loginView.loginStuckView.frame.maxY
         let keyBoardOriginY = view.frame.height - keyboardHeight
-        let realStuckMaxY = loginView.convert(loginView.loginStuckView.frame, from: self.navigationController?.view).maxY
         let yOffset = loginStuckMaxY > keyBoardOriginY ? loginStuckMaxY - keyBoardOriginY + 16 : .zero
-        print(loginStuckMaxY)
-        print(keyBoardOriginY)
-        print(yOffset)
-        print(realStuckMaxY)
         scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
     }
     

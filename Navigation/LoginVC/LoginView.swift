@@ -82,7 +82,13 @@ class LoginView: UIView {
         return button
     }()
     
-    private func addView(){
+    @objc private func pushProfileVC(_ sender: UIButton){
+        delegate?.onButtonTap(sender: sender)
+    }
+    
+    func setView(){
+        self.backgroundColor = .white
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(logoImageView)
         self.addSubview(loginStuckView)
         authorizationView.addSubview(loginTextField)
@@ -90,9 +96,9 @@ class LoginView: UIView {
         authorizationView.addSubview(midelAuthorizationView)
         loginStuckView.addArrangedSubview(authorizationView)
         loginStuckView.addArrangedSubview(loginButton)
-    }
-    
-    private func setLayout(){
+        
+        loginButton.addTarget(self, action: #selector(pushProfileVC), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
@@ -120,22 +126,6 @@ class LoginView: UIView {
             passwordTextField.bottomAnchor.constraint(equalTo: authorizationView.bottomAnchor),
             
             loginButton.heightAnchor.constraint(equalToConstant: 50)])
-    }
-    
-    private func addTargets(){
-        loginButton.addTarget(self, action: #selector(pushProfileVC), for: .touchUpInside)
-    }
-    
-    @objc private func pushProfileVC(_ sender: UIButton){
-        delegate?.onButtonTap(sender: sender)
-    }
-    
-    func setView(){
-        self.backgroundColor = .systemPink
-        self.translatesAutoresizingMaskIntoConstraints = false
-        addView()
-        setLayout()
-        addTargets()
     }
 }
 

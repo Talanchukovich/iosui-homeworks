@@ -9,86 +9,82 @@ import UIKit
 
 class ProfileViewController: UIViewController{
     
-    var profileHeaderView = ProfileHeaderView()
-    private var statusText = "Укажите статус!"
-    let changeTitleButtton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Set title", for: .normal)
-        button.backgroundColor = .blue
-        button.tintColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private var posts = Posts().setPosts()
+    private var profileHeaderView = ProfileHeaderView()
+    
+    private lazy var postsTableView: UITableView = {
+      let tableView = UITableView()
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         addDelegate()
-        addTapGesture()
-        setLayout()
-        profileHeaderView.setView()
     }
     
     func setView(){
-        self.navigationItem.title = "Profile"
+        view.addSubview(postsTableView)
         view.backgroundColor = .lightGray
-        view.addSubview(profileHeaderView)
-        view.addSubview(changeTitleButtton)
+        
+        NSLayoutConstraint.activate([
+            postsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            postsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            postsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            postsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
     }
     
     func addDelegate(){
-        profileHeaderView.delegate = self
+        postsTableView.delegate = self
+        postsTableView.dataSource = self
         profileHeaderView.statusTextField.delegate = self
-    }
-    
-    func addTapGesture(){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func hideKeyBoard(){
-        self.view.endEditing(true)
-    }
-    
-    func setLayout(){
-        NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-                                     
-            changeTitleButtton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            changeTitleButtton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            changeTitleButtton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            changeTitleButtton.heightAnchor.constraint(equalToConstant: 50)])
-    }
-    
-    private func setStatusLabel(){
-        profileHeaderView.setStatusLabel(statusText: statusText)
     }
 }
 
-extension ProfileViewController: ButtonDelegate {
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        posts.count
+    }
     
-    func onButtonTap(sender: UIButton) {
-        view.endEditing(true)
-        setStatusLabel()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
+            return cell
+        }
+        let post = posts[indexPath.row]
+        let viewModel = PostTableViewCell.CellPost(author: post.author,
+                                                   description: post.description,
+                                                   imagePost: post.imagePost,
+                                                   likes: post.likes,
+                                                   views: post.views,
+                                                   indexPath: indexPath)
+        cell.setup(cellPost: viewModel)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
+            return nil
+        }
+        return profileHeaderView
     }
 }
 
 extension ProfileViewController: UITextFieldDelegate {
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else {return}
-        statusText = text
-       
+//        guard let text = textField.text else {return}
+//        ProfileHeaderView().statusLabel.text = !text.isEmpty ? text : ProfileHeaderView().statusLabel.text
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("Done")
         textField.resignFirstResponder()
-        if textField.text?.isEmpty == false {
-            setStatusLabel()
-        }
         return true
     }
 }
