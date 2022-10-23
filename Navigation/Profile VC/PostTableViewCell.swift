@@ -73,6 +73,15 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        authorLabel.text = nil
+        imagePostView.image = nil
+        descriptionLabel.text = nil
+        likesLabel.text = nil
+        viewsLabel.text = nil
+    }
+    
     func setup(cellPost: CellPost){
         authorLabel.text = cellPost.author
         imagePostView.image = UIImage(named: cellPost.imagePost)
