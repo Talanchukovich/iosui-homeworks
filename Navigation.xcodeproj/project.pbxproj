@@ -118,9 +118,9 @@
 		807E040E28FFDF280085110B /* AnotherVC */ = {
 			isa = PBXGroup;
 			children = (
+				807E041328FFE6AB0085110B /* Post.swift */,
 				807E040F28FFDF430085110B /* PostViewController.swift */,
 				802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */,
-				807E041328FFE6AB0085110B /* Post.swift */,
 			);
 			path = AnotherVC;
 			sourceTree = "<group>";

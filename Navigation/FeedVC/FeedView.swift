@@ -23,10 +23,10 @@ class FeedView: UIView {
     private let postButton1: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
+        postButton.tintColor = .white
         postButton.layer.borderWidth = 3
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.setTitle("Открыть пост1", for: .normal)
-        postButton.tintColor = .white
         postButton.layer.cornerRadius = 25
         postButton.translatesAutoresizingMaskIntoConstraints = false
         return postButton

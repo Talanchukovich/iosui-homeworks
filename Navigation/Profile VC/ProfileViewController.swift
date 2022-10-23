@@ -10,7 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController{
     
     var profileHeaderView = ProfileHeaderView()
-    private var statusText = "Укажите статус"
+    private var statusText = "Укажите статус!"
     let changeTitleButtton: UIButton = {
         let button = UIButton()
         button.setTitle("Set title", for: .normal)
