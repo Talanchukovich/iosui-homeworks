@@ -12,8 +12,8 @@ class PostViewController: UIViewController {
     var viewTitel: String?
     let infoVC = InfoViewController()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUpView()
     }
     
