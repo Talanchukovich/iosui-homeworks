@@ -15,33 +15,29 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        addDelegate()
-        setLayout()
+        addCompletion()
+        feedView.setView()
     }
     
     func setView(){
         self.title = "Новости"
         view.addSubview(feedView)
-        feedView.setView()
-    }
-    
-    func addDelegate(){
-        feedView.delegate = self
-    }
-    
-    func setLayout(){
+        
         NSLayoutConstraint.activate([
             feedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             feedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             feedView.topAnchor.constraint(equalTo: view.topAnchor),
             feedView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
-}
-
-extension FeedViewController: ButtonDelegate {
-    func onButtonTap(sender: UIButton) {
+    
+    func addCompletion(){
+        feedView.completion = {[weak self] title in
+            self?.pushPostVC(title: title)
+        }
+    }
+    
+    func pushPostVC(title: String){
         navigationController?.pushViewController(postVC, animated: true)
-        postVC.viewTitel = sender.currentTitle
+        postVC.viewTitel = title
     }
 }
-

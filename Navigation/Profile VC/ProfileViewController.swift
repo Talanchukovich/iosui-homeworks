@@ -10,16 +10,20 @@ import UIKit
 class ProfileViewController: UIViewController{
     
     private var posts = Posts().setPosts()
-    private var profileHeaderView = ProfileHeaderView()
     private lazy var statusText = ""
     
     private lazy var postsTableView: UITableView = {
-      let tableView = UITableView()
+        let tableView = UITableView()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.contentInsetAdjustmentBehavior = .never
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = CGFloat(0)
+        } else {
+            tableView.backgroundColor = .lightGray
+        }
         return tableView
     }()
     
@@ -47,13 +51,22 @@ class ProfileViewController: UIViewController{
     }
     
     func addTapGesture(){
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-            view.addGestureRecognizer(tapGesture)
-        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        view.addGestureRecognizer(tapGesture)
+    }
     
     @objc func hideKeyBoard(){
-            self.view.endEditing(true)
+        self.view.endEditing(true)
+    }
+    
+    func updateHeaderView(text: String) {
+        if text.isEmpty == false {
+            if let headerView = postsTableView.headerView(forSection: 0) as? ProfileHeaderView {
+                headerView.statusLabel.text = text
+                headerView.statusTextField.text?.removeAll()
+            }
         }
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +80,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         let post = posts[indexPath.row]
-        let viewModel = PostTableViewCell.CellPost(author: post.author,
+        let viewModel = PostTableViewCell.ViewModel(author: post.author,
                                                    description: post.description,
                                                    imagePost: post.imagePost,
                                                    likes: post.likes,
@@ -78,31 +91,24 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
-            return nil
-        }
-        profileHeaderView.statusTextField.delegate = self
-        profileHeaderView.delegate = self
-        return profileHeaderView
-    }
-    
-    func updateHeaderView(text: String) {
-        if text.isEmpty == false {
-            if let headerView = postsTableView.headerView(forSection: 0) as? ProfileHeaderView {
-                headerView.statusLabel.text = text
-                headerView.statusTextField.text?.removeAll()
+        if section == 0 {
+            guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
+                return nil
             }
+            profileHeaderView.statusTextField.delegate = self
+            profileHeaderView.completion = {[weak self] in
+                guard let text = self?.statusText else {return}
+                self?.hideKeyBoard()
+                self?.updateHeaderView(text: text)
+            }
+            return profileHeaderView
         }
-     }
+        return nil
+    }
 }
 
-extension ProfileViewController: UITextFieldDelegate, ButtonDelegate {
-    func onButtonTap(sender: UIButton) {
-        hideKeyBoard()
-        updateHeaderView(text: statusText)
-    }
-    
-    
+extension ProfileViewController: UITextFieldDelegate {
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else {return}
         statusText = text
@@ -114,4 +120,9 @@ extension ProfileViewController: UITextFieldDelegate, ButtonDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return string.first == " " ? false : true
+    }
+    
 }

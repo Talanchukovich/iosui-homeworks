@@ -19,7 +19,6 @@
 		807E041028FFDF430085110B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E040F28FFDF430085110B /* PostViewController.swift */; };
 		807E041228FFE34D0085110B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E041128FFE34D0085110B /* FeedView.swift */; };
 		807E041428FFE6AB0085110B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E041328FFE6AB0085110B /* Post.swift */; };
-		80B6D2F82903FB2F009A476F /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D2F72903FB2F009A476F /* Protocols.swift */; };
 		80B6D2FE29056074009A476F /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D2FD29056074009A476F /* Posts.swift */; };
 		80B6D30229057241009A476F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30129057241009A476F /* PostTableViewCell.swift */; };
 		80C53FE929007988007882C9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C53FE829007988007882C9 /* LogInViewController.swift */; };
@@ -41,7 +40,6 @@
 		807E040F28FFDF430085110B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		807E041128FFE34D0085110B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		807E041328FFE6AB0085110B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		80B6D2F72903FB2F009A476F /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		80B6D2FD29056074009A476F /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		80B6D30129057241009A476F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		80C53FE829007988007882C9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				807E040E28FFDF280085110B /* AnotherVC */,
 				807E03EF28FFD0CA0085110B /* AppDelegate.swift */,
 				807E03F128FFD0CA0085110B /* SceneDelegate.swift */,
-				80B6D2F72903FB2F009A476F /* Protocols.swift */,
 				807E03F828FFD0D00085110B /* Assets.xcassets */,
 				807E03FA28FFD0D00085110B /* LaunchScreen.storyboard */,
 				807E03FD28FFD0D00085110B /* Info.plist */,
@@ -227,7 +224,6 @@
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
 				807E040B28FFD8100085110B /* ProfileViewController.swift in Sources */,
 				807E03F028FFD0CA0085110B /* AppDelegate.swift in Sources */,
-				80B6D2F82903FB2F009A476F /* Protocols.swift in Sources */,
 				80B6D30229057241009A476F /* PostTableViewCell.swift in Sources */,
 				807E041428FFE6AB0085110B /* Post.swift in Sources */,
 				80C53FEB29007E6F007882C9 /* LoginView.swift in Sources */,

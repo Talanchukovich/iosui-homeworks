@@ -10,7 +10,8 @@ import UIKit
 class LogInViewController: UIViewController {
     
     var loginView = LoginView()
-    private var activTextfield: UITextField? = nil
+    private lazy var activTextfield: UITextField? = nil
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.contentInsetAdjustmentBehavior = .never
@@ -23,7 +24,9 @@ class LogInViewController: UIViewController {
         view.backgroundColor = .white
         setView()
         addDelegate()
+        addCompletion()
         addTapGesture()
+        loginView.setView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +42,6 @@ class LogInViewController: UIViewController {
     func setView(){
         view.addSubview(scrollView)
         scrollView.addSubview(loginView)
-        loginView.setView()
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -56,7 +58,16 @@ class LogInViewController: UIViewController {
     func addDelegate(){
         loginView.loginTextField.delegate = self
         loginView.passwordTextField.delegate = self
-        loginView.delegate = self
+    }
+    
+    func addCompletion(){
+        loginView.completion = {[weak self] in
+            self?.pushProfileVC()
+        }
+    }
+    
+    func pushProfileVC() {
+        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
     
     func addTapGesture(){
@@ -88,12 +99,6 @@ class LogInViewController: UIViewController {
     }
 }
 
-extension LogInViewController: ButtonDelegate{
-    func onButtonTap(sender: UIButton) {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
-    }
-}
-
 extension LogInViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -103,6 +108,13 @@ extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         activTextfield = nil
         hideKeyBoard()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if activTextfield == loginView.loginTextField {
+            return string.first == " " ? false : true
+        }
         return true
     }
 }

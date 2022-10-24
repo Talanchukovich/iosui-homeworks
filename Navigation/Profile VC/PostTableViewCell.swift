@@ -9,7 +9,7 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    struct CellPost {
+    struct ViewModel {
         let author: String
         let description: String
         let imagePost: String
@@ -17,8 +17,10 @@ class PostTableViewCell: UITableViewCell {
         let views: Int
         let indexPath: IndexPath
     }
+    private lazy var likes = "Likes: "
+    private lazy var views = "Views: "
     
-    lazy var authorLabel: UILabel = {
+    private lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -27,7 +29,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var imagePostView: UIImageView = {
+    private lazy var imagePostView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.backgroundColor = .black
@@ -35,23 +37,23 @@ class PostTableViewCell: UITableViewCell {
         return view
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = .max
+        label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var likesLabel: UILabel = {
+    private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    lazy var viewsLabel: UILabel = {
+    private lazy var viewsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
@@ -61,8 +63,6 @@ class PostTableViewCell: UITableViewCell {
     
     private var indexPath: IndexPath?
     
-    private lazy var likes = "Likes: "
-    private lazy var views = "Views: "
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,7 +82,7 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.text = nil
     }
     
-    func setup(cellPost: CellPost){
+    func setup(cellPost: ViewModel){
         authorLabel.text = cellPost.author
         imagePostView.image = UIImage(named: cellPost.imagePost)
         descriptionLabel.text = cellPost.description

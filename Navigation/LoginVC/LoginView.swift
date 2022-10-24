@@ -9,20 +9,16 @@ import UIKit
 
 class LoginView: UIView {
     
-    var delegate: ButtonDelegate?
+    var completion: (()->Void)?
     
-    func free(){
-        print(#function)
-    }
-    
-    private let logoImageView: UIImageView = {
+    private lazy var logoImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "logo")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    let loginStuckView: UIStackView = {
+    lazy var loginStuckView: UIStackView = {
         let stuck = UIStackView()
         stuck.axis = .vertical
         stuck.spacing = 16
@@ -30,7 +26,7 @@ class LoginView: UIView {
         return stuck
     }()
     
-    private let authorizationView: UIView = {
+    private lazy var authorizationView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
         view.layer.borderWidth = 0.5
@@ -40,14 +36,14 @@ class LoginView: UIView {
         return view
     }()
     
-    private let midelAuthorizationView: UIView = {
+    private lazy var midelAuthorizationView: UIView = {
         let view = UIView()
         view.layer.borderWidth = 0.2
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let loginTextField: UITextField = {
+    lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.textColor = .black
@@ -58,7 +54,7 @@ class LoginView: UIView {
         return textField
     }()
     
-    let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.isSecureTextEntry = true
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -71,7 +67,7 @@ class LoginView: UIView {
         return textField
     }()
     
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
         let image = UIImage(named: "blue-pixel")
@@ -86,8 +82,12 @@ class LoginView: UIView {
         return button
     }()
     
-    @objc private func pushProfileVC(_ sender: UIButton){
-        delegate?.onButtonTap(sender: sender)
+    private func addTargets(){
+        loginButton.addTarget(self, action: #selector(pushProfileVC), for: .touchUpInside)
+    }
+    
+    @objc private func pushProfileVC(){
+        completion?()
     }
     
     func setView(){
@@ -100,8 +100,7 @@ class LoginView: UIView {
         authorizationView.addSubview(midelAuthorizationView)
         loginStuckView.addArrangedSubview(authorizationView)
         loginStuckView.addArrangedSubview(loginButton)
-        
-        loginButton.addTarget(self, action: #selector(pushProfileVC), for: .touchUpInside)
+        addTargets()
         
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
