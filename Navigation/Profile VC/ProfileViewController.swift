@@ -16,13 +16,12 @@ class ProfileViewController: UIViewController{
         let tableView = UITableView()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
+        tableView.backgroundColor = .lightGray
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = CGFloat(0)
-        } else {
-            tableView.backgroundColor = .lightGray
         }
         return tableView
     }()
@@ -119,6 +118,10 @@ extension ProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postsTableView.deselectRow(at: indexPath, animated: true)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
