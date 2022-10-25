@@ -14,7 +14,6 @@ class LogInViewController: UIViewController {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
-        //scrollView.contentSize.width = UIScreen.main.bounds.width
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
@@ -171,7 +170,8 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func pushProfileVC() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     @objc private func hideKeyBoard(){

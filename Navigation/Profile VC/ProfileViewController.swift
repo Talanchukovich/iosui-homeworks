@@ -86,12 +86,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let feedCell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+    
+        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
             let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
             return cell
         }
-        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
+        
+        guard let postCell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
             let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
             return cell
         }
@@ -102,13 +103,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                                    likes: post.likes,
                                                    views: post.views,
                                                    indexPath: indexPath)
-        feedCell.setup(cellPost: viewModel)
+        postCell.setup(cellPost: viewModel)
         
         switch indexPath.section {
         case 0:
             return photoCell
         default:
-            return feedCell
+            return postCell
         }
     }
     
@@ -130,6 +131,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return tableView.sectionHeaderHeight
+        }
+        return 8
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postsTableView.deselectRow(at: indexPath, animated: true)
+        if indexPath == [1, 0] {
+            let photosViewController = PhotosViewController()
+            navigationController?.pushViewController(photosViewController, animated: true)
+        }
+    }
 }
 
 extension ProfileViewController: UITextFieldDelegate {
@@ -144,10 +159,6 @@ extension ProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        postsTableView.deselectRow(at: indexPath, animated: true)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
