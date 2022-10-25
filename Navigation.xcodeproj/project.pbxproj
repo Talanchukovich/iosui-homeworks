@@ -121,6 +121,7 @@
 				807E041328FFE6AB0085110B /* Post.swift */,
 				807E040F28FFDF430085110B /* PostViewController.swift */,
 				802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */,
+				807E041328FFE6AB0085110B /* Post.swift */,
 			);
 			path = AnotherVC;
 			sourceTree = "<group>";
@@ -207,6 +208,7 @@
 				807E041228FFE34D0085110B /* FeedView.swift in Sources */,
 				80C53FE929007988007882C9 /* LogInViewController.swift in Sources */,
 				802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */,
+				80B6D2FA29044243009A476F /* Protocols.swift in Sources */,
 				807E040728FFD6EE0085110B /* TabBarController.swift in Sources */,
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
