@@ -10,6 +10,7 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     var delegate: ButtonDelegate?
+    
     private let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "catImage")
@@ -33,7 +34,7 @@ class ProfileHeaderView: UIView {
     
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Укажите статус"
+        label.text = "Укажите статус!"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,18 +84,18 @@ class ProfileHeaderView: UIView {
             avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            
+                                     
             fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
             fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
+                                     
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            
+                                     
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -60),
-            
+                                     
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
             statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
             statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),

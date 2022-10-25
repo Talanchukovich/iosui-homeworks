@@ -9,8 +9,8 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var postVC = PostViewController()
     var feedView = FeedView()
+    var postVC = PostViewController()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,3 +44,4 @@ extension FeedViewController: ButtonDelegate {
         postVC.viewTitel = sender.currentTitle
     }
 }
+

@@ -11,6 +11,7 @@ class TabBarController: UITabBarController {
    
     var feedViewController: UINavigationController!
     var profileViewController: UINavigationController!
+    var loginViewController: UINavigationController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,11 @@ class TabBarController: UITabBarController {
     func setUpTabBar(){
         feedViewController = UINavigationController.init(rootViewController: FeedViewController())
         profileViewController = UINavigationController.init(rootViewController: ProfileViewController())
-        self.viewControllers = [feedViewController, profileViewController]
-        self.tabBar.backgroundColor = .white
+        loginViewController = UINavigationController.init(rootViewController: LogInViewController())
+        self.viewControllers = [feedViewController, loginViewController]
+        self.tabBar.backgroundColor = .systemGray6
+        self.tabBar.layer.borderColor = UIColor.gray.cgColor
+        self.tabBar.layer.borderWidth = 0.3
     }
     
     func setUpFeedItem(){
@@ -32,7 +36,8 @@ class TabBarController: UITabBarController {
     }
     
     func setUpProfileItem(){
-        profileViewController.tabBarItem.title = "Профиль"
-        profileViewController.tabBarItem.image = UIImage(systemName: "person")
+        loginViewController.tabBarItem.title = "Профиль"
+        loginViewController.tabBarItem.image = UIImage(systemName: "person")
+        loginViewController.navigationBar.isHidden = true
     }
 }

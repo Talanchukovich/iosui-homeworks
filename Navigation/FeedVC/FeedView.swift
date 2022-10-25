@@ -8,8 +8,9 @@
 import UIKit
 
 class FeedView: UIView {
-   
+    
     var delegate: ButtonDelegate?
+    
     private let buttonStuck: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
@@ -22,10 +23,10 @@ class FeedView: UIView {
     private let postButton1: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
+        postButton.tintColor = .white
         postButton.layer.borderWidth = 3
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.setTitle("Открыть пост1", for: .normal)
-        postButton.tintColor = .white
         postButton.layer.cornerRadius = 25
         postButton.translatesAutoresizingMaskIntoConstraints = false
         return postButton
@@ -43,7 +44,6 @@ class FeedView: UIView {
         return postButton
     }()
     
-    
     private func setLayout(){
         NSLayoutConstraint.activate([
             buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -51,6 +51,7 @@ class FeedView: UIView {
             buttonStuck.heightAnchor.constraint(equalToConstant: 110),
             buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
     }
+    
     
     private func addTargets(){
         postButton1.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)

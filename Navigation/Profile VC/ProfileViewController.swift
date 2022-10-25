@@ -10,7 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController{
     
     var profileHeaderView = ProfileHeaderView()
-    private var statusText = "Укажите статус"
+    private var statusText = "Укажите статус!"
     let changeTitleButtton: UIButton = {
         let button = UIButton()
         button.setTitle("Set title", for: .normal)
@@ -23,21 +23,31 @@ class ProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
-        addDelegates()
+        addDelegate()
+        addTapGesture()
         setLayout()
         profileHeaderView.setView()
     }
     
     func setView(){
-        view.backgroundColor = .lightGray
         self.navigationItem.title = "Profile"
+        view.backgroundColor = .lightGray
         view.addSubview(profileHeaderView)
         view.addSubview(changeTitleButtton)
     }
     
-    func addDelegates(){
+    func addDelegate(){
         profileHeaderView.delegate = self
         profileHeaderView.statusTextField.delegate = self
+    }
+    
+    func addTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyBoard(){
+        self.view.endEditing(true)
     }
     
     func setLayout(){
@@ -46,7 +56,7 @@ class ProfileViewController: UIViewController{
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
+                                     
             changeTitleButtton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             changeTitleButtton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             changeTitleButtton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -58,7 +68,8 @@ class ProfileViewController: UIViewController{
     }
 }
 
-extension ProfileViewController: ButtonDelegate{
+extension ProfileViewController: ButtonDelegate {
+    
     func onButtonTap(sender: UIButton) {
         view.endEditing(true)
         setStatusLabel()
@@ -66,10 +77,11 @@ extension ProfileViewController: ButtonDelegate{
 }
 
 extension ProfileViewController: UITextFieldDelegate {
-   
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else {return}
         statusText = text
+       
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
