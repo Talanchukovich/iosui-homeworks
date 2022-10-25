@@ -11,12 +11,13 @@ class ProfileViewController: UIViewController{
     
     private var posts = Posts().setPosts()
     private lazy var statusText = ""
-    
     private lazy var postsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.backgroundColor = .lightGray
+        tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -69,12 +70,28 @@ class ProfileViewController: UIViewController{
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        posts.count
+        
+        switch section {
+        case 0:
+            return 1
+        default:
+            return posts.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+        
+        guard let feedCell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
+            return cell
+        }
+        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
             let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
             return cell
         }
@@ -85,24 +102,33 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                                    likes: post.likes,
                                                    views: post.views,
                                                    indexPath: indexPath)
-        cell.setup(cellPost: viewModel)
-        return cell
+        feedCell.setup(cellPost: viewModel)
+        
+        switch indexPath.section {
+        case 0:
+            return photoCell
+        default:
+            return feedCell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
-                return nil
-            }
-            profileHeaderView.statusTextField.delegate = self
-            profileHeaderView.completion = {[weak self] in
-                guard let text = self?.statusText else {return}
-                self?.hideKeyBoard()
-                self?.updateHeaderView(text: text)
-            }
-            return profileHeaderView
+        
+        guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
+            return nil
         }
-        return nil
+        profileHeaderView.statusTextField.delegate = self
+        profileHeaderView.completion = {[weak self] in
+            guard let text = self?.statusText else {return}
+            self?.hideKeyBoard()
+            self?.updateHeaderView(text: text)
+        }
+        switch section {
+        case 0:
+            return profileHeaderView
+        default:
+            return nil
+        }
     }
 }
 

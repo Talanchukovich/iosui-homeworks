@@ -66,7 +66,7 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
+        setupCell()
     }
     
     required init?(coder: NSCoder) {
@@ -91,7 +91,9 @@ class PostTableViewCell: UITableViewCell {
         indexPath = cellPost.indexPath
     }
     
-    private func setupView(){
+    private func setupCell(){
+        self.layer.borderColor = UIColor.gray.cgColor
+        self.layer.borderWidth = 0.2
         self.addSubview(authorLabel)
         self.addSubview(imagePostView)
         self.addSubview(descriptionLabel)
