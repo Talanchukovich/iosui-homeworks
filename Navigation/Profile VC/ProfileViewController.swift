@@ -70,7 +70,9 @@ class ProfileViewController: UIViewController{
     }
     
     @objc func pushPhotosVC(){
-        let collectionView = PhotoCollectionView(collectionViewItemCount: 3, scrollDirection: .vertical, minimumInteritemSpacing: 8, minimumLineSpacing: 8, sectionInset: UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
+        let collectionView = PhotoCollectionView(collectionViewItemCount: 3, scrollDirection: .vertical,
+                                                 minimumInteritemSpacing: 8, minimumLineSpacing: 8,
+                                                 sectionInset: UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
         let photosViewController = PhotosViewController(collectionView: collectionView)
         navigationController?.pushViewController(photosViewController, animated: true)
     }
