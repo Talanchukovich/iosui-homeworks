@@ -10,7 +10,8 @@ import UIKit
 class PhotosTableViewCell: UITableViewCell {
     
     private lazy var photos = Photos().makePhotosData()
-    private lazy var itemCount: CGFloat = 4
+    private lazy var collectionViewItemCount: CGFloat = 4
+    private lazy var collectionViewHieght: CGFloat = 0
     
     private lazy var photosLabel: UILabel = {
         let label = UILabel()
@@ -33,7 +34,7 @@ class PhotosTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         return layout
     }()
     
@@ -49,11 +50,20 @@ class PhotosTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        collectionViewHieght = setCollectionItemHieght(layout: layout) + layout.sectionInset.top + layout.sectionInset.bottom
         setupCell()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setCollectionItemHieght(layout: UICollectionViewFlowLayout) -> CGFloat{
+        let inset = layout.sectionInset
+        let interitemSpacing = layout.minimumLineSpacing
+        let width = UIScreen.main.bounds.width - (collectionViewItemCount - 1) * interitemSpacing - inset.left - inset.right
+        let itemWidth = width / collectionViewItemCount
+        return itemWidth
     }
     
     private func setupCell(){
@@ -72,7 +82,7 @@ class PhotosTableViewCell: UITableViewCell {
             collectionView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 130)
+            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHieght)
         ])
     }
 }
@@ -93,13 +103,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let inset = layout.sectionInset
-        print("l ", inset.left)
-        print("R ", inset.right)
-        let interitemSpacing = layout.minimumLineSpacing
-        let width = UIScreen.main.bounds.width - (itemCount - 1) * interitemSpacing - inset.left - inset.right
-        let itemWidth = width / itemCount
-        print(width)
+        let itemWidth = setCollectionItemHieght(layout: layout)
         return CGSize(width: itemWidth, height: itemWidth)
     }
 }
