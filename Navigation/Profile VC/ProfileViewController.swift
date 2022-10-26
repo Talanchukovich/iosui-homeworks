@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController{
-
+    
     private let posts = Posts().setPosts()
     private lazy var statusText = ""
     
@@ -105,11 +105,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let post = posts[indexPath.row]
         let postViewModel = PostTableViewCell.PostViewModel(author: post.author,
-                                                   description: post.description,
-                                                   imagePost: post.imagePost,
-                                                   likes: post.likes,
-                                                   views: post.views,
-                                                   indexPath: indexPath)
+                                                            description: post.description,
+                                                            imagePost: post.imagePost,
+                                                            likes: post.likes,
+                                                            views: post.views,
+                                                            indexPath: indexPath)
         postCell.setupVieModel(viewModel: postViewModel)
         
         switch indexPath.section {

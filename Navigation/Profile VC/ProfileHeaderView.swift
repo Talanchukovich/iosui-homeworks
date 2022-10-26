@@ -10,7 +10,7 @@ import UIKit
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var completion: (()->Void)?
-   
+    
     private lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "catImage")

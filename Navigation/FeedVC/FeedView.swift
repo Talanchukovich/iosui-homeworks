@@ -12,7 +12,7 @@ class FeedView: UIView {
     var completion: ((String)->Void)?
     
     private lazy var buttonStuck: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
         stack.distribution = .fillEqually

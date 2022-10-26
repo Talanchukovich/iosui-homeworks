@@ -11,7 +11,7 @@ class FeedViewController: UIViewController {
     
     var feedView = FeedView()
     var postVC = PostViewController()
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()

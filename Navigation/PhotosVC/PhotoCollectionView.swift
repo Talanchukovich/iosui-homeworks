@@ -34,7 +34,7 @@ class PhotoCollectionView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-        
+    
     init(collectionViewItemCount: CGFloat, scrollDirection: UICollectionView.ScrollDirection, minimumInteritemSpacing: CGFloat, minimumLineSpacing: CGFloat, sectionInset: UIEdgeInsets) {
         super.init(frame: .zero)
         self.collectionViewItemCount = collectionViewItemCount

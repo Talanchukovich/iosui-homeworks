@@ -47,7 +47,7 @@ class PhotosTableViewCell: UITableViewCell {
         self.contentView.addSubview(photosLabel)
         self.contentView.addSubview(cellAccessoryView)
         self.contentView.addSubview(collectionView)
-       
+        
         NSLayoutConstraint.activate([
             
             photosLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),

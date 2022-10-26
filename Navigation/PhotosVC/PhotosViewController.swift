@@ -10,7 +10,7 @@ import UIKit
 class PhotosViewController: UIViewController {
     
     private var collectionView: UIView
-
+    
     init(collectionView: UIView) {
         self.collectionView = collectionView
         super.init(nibName: nil, bundle: nil)
@@ -30,11 +30,11 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
     }
-
+    
     private func setupView() {
         view.backgroundColor = .systemGray6
         view.addSubview(collectionView)
-
+        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),

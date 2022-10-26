@@ -67,7 +67,7 @@ class LogInViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-   
+    
     private lazy var mideLineTextFieldStuckView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -128,7 +128,7 @@ class LogInViewController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-        
+            
             logoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             logoImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -147,7 +147,7 @@ class LogInViewController: UIViewController {
             loginTextField.leadingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.leadingAnchor, constant: 10),
             loginTextField.trailingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.trailingAnchor, constant: -10),
             loginTextField.centerYAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.centerYAnchor, constant: -25),
-
+            
             passwordTextField.leadingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.leadingAnchor, constant: 10),
             passwordTextField.trailingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.trailingAnchor, constant: -10),
             passwordTextField.centerYAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.centerYAnchor, constant: 25),
@@ -158,7 +158,7 @@ class LogInViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-        
+    
     func addDelegate(){
         loginTextField.delegate = self
         passwordTextField.delegate = self
@@ -219,7 +219,7 @@ extension LogInViewController: UITextFieldDelegate {
 }
 
 extension UIImage {
-
+    
     func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)

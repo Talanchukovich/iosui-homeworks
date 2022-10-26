@@ -120,6 +120,6 @@ class PostTableViewCell: UITableViewCell {
             
             viewsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             viewsLabel.firstBaselineAnchor.constraint(equalTo: likesLabel.firstBaselineAnchor)
-            ])
+        ])
     }
 }
