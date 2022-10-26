@@ -9,7 +9,7 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    struct ViewModel {
+    struct PostViewModel {
         let author: String
         let description: String
         let imagePost: String
@@ -82,13 +82,13 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.text = nil
     }
     
-    func setup(cellPost: ViewModel){
-        authorLabel.text = cellPost.author
-        imagePostView.image = UIImage(named: cellPost.imagePost)
-        descriptionLabel.text = cellPost.description
-        likesLabel.text = likes.appending(String(cellPost.likes))
-        viewsLabel.text = views.appending(String(cellPost.views)) 
-        indexPath = cellPost.indexPath
+    func setupVieModel(viewModel: PostViewModel){
+        authorLabel.text = viewModel.author
+        imagePostView.image = UIImage(named: viewModel.imagePost)
+        descriptionLabel.text = viewModel.description
+        likesLabel.text = likes.appending(String(viewModel.likes))
+        viewsLabel.text = views.appending(String(viewModel.views))
+        indexPath = viewModel.indexPath
     }
     
     private func setupCell(){

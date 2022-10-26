@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController{
-    private let photosContentViewCell = PhotosContentViewCell()
+
     private let posts = Posts().setPosts()
     private lazy var statusText = ""
     
@@ -16,8 +16,8 @@ class ProfileViewController: UIViewController{
         let tableView = UITableView()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
-        tableView.register(PhotosContentViewCell.self, forCellReuseIdentifier: "PhotosContentViewCell")
-        tableView.backgroundColor = .lightGray
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
+        tableView.backgroundColor = .systemGray6
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController{
     }
     
     func setView(){
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemGray6
         view.addSubview(postsTableView)
         
         NSLayoutConstraint.activate([
@@ -70,7 +70,8 @@ class ProfileViewController: UIViewController{
     }
     
     @objc func pushPhotosVC(){
-        let photosViewController = PhotosViewController()
+        let collectionView = PhotoCollectionView(collectionViewItemCount: 3, scrollDirection: .vertical, minimumInteritemSpacing: 8, minimumLineSpacing: 8, sectionInset: UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
+        let photosViewController = PhotosViewController(collectionView: collectionView)
         navigationController?.pushViewController(photosViewController, animated: true)
     }
 }
@@ -90,41 +91,24 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosContentViewCell", for: indexPath) as? PhotosContentViewCell else {
-            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosContentViewCell", for: indexPath)
+        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
+            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath)
             return cell
         }
-        photoCell.contentView.addSubview(photoCell.collectionView)
-        photoCell.contentView.addSubview(photoCell.photosLabel)
-        photoCell.contentView.addSubview(photoCell.cellAccessoryView)
-        photoCell.clipsToBounds = true
         photoCell.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPhotosVC)))
-        
-        NSLayoutConstraint.activate([
-            photoCell.photosLabel.leadingAnchor.constraint(equalTo: photoCell.contentView.leadingAnchor, constant: 12),
-            photoCell.photosLabel.topAnchor.constraint(equalTo: photoCell.contentView.topAnchor, constant: 12),
-            
-            photoCell.cellAccessoryView.centerYAnchor.constraint(equalTo: photoCell.photosLabel.centerYAnchor),
-            photoCell.cellAccessoryView.trailingAnchor.constraint(equalTo: photoCell.contentView.trailingAnchor, constant: -12),
-            
-            photoCell.collectionView.topAnchor.constraint(equalTo: photoCell.photosLabel.bottomAnchor),
-            photoCell.collectionView.trailingAnchor.constraint(equalTo: photoCell.contentView.trailingAnchor),
-            photoCell.collectionView.leadingAnchor.constraint(equalTo: photoCell.contentView.leadingAnchor),
-            photoCell.collectionView.bottomAnchor.constraint(equalTo: photoCell.contentView.bottomAnchor)
-            ])
         
         guard let postCell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
             let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
             return cell
         }
         let post = posts[indexPath.row]
-        let viewModel = PostTableViewCell.ViewModel(author: post.author,
+        let postViewModel = PostTableViewCell.PostViewModel(author: post.author,
                                                    description: post.description,
                                                    imagePost: post.imagePost,
                                                    likes: post.likes,
                                                    views: post.views,
                                                    indexPath: indexPath)
-        postCell.setup(cellPost: viewModel)
+        postCell.setupVieModel(viewModel: postViewModel)
         
         switch indexPath.section {
         case 0:

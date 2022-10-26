@@ -89,7 +89,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setView(){
-        self.contentView.backgroundColor = .lightGray
+        self.contentView.backgroundColor = .systemGray6
+        self.contentView.layer.borderColor = UIColor.gray.cgColor
+        self.contentView.layer.borderWidth = 0.3
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)

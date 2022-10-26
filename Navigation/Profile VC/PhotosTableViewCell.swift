@@ -1,13 +1,13 @@
 //
-//  PhotosContentViewCell.swift
+//  PhotosTableViewCell.swift
 //  Navigation
 //
-//  Created by Андрей Таланчук on 25.10.2022.
+//  Created by Andrey Talanchuk on 26.10.2022.
 //
 
 import UIKit
 
-class PhotosContentViewCell: UITableViewCell {
+class PhotosTableViewCell: UITableViewCell {
     
     private let photos = Photos().photosName
     private lazy var collectionViewItemCount: CGFloat = 4
@@ -67,18 +67,32 @@ class PhotosContentViewCell: UITableViewCell {
     }
     
     func setupView() {
-        self.addSubview(photosLabel)
-        self.addSubview(cellAccessoryView)
-        self.addSubview(collectionView)
-        
+        self.layer.borderWidth = 0.3
+        self.layer.borderColor = UIColor.gray.cgColor
+        self.contentView.addSubview(photosLabel)
+        self.contentView.addSubview(cellAccessoryView)
+        self.contentView.addSubview(collectionView)
+       
         NSLayoutConstraint.activate([
+            
+            photosLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
+            photosLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
+            
+            cellAccessoryView.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
+            cellAccessoryView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
+            
+            collectionView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            
             collectionView.heightAnchor.constraint(equalToConstant: collectionViewHieght),
             collectionView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
         ])
     }
 }
 
-extension PhotosContentViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
@@ -89,8 +103,10 @@ extension PhotosContentViewCell: UICollectionViewDataSource, UICollectionViewDel
             return cell
         }
         let photo = photos[indexPath.row]
-        cell.setup(photoName: photo)
+        let photoViewModel = PhotosCollectionViewCell.PhotoViewModel.init(name: photo)
+        cell.setupViewModel(viewModel: photoViewModel)
         cell.clipsToBounds = true
+        cell.layer.cornerRadius = 6
         return cell
     }
     
@@ -99,3 +115,4 @@ extension PhotosContentViewCell: UICollectionViewDataSource, UICollectionViewDel
         return CGSize(width: itemWidth, height: itemWidth)
     }
 }
+

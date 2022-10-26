@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    struct Photo {
+    struct PhotoViewModel {
         var name: String
     }
     
@@ -44,7 +44,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
     
-    func setup(photoName: String) {
-        photoImageView.image = UIImage(named: photoName)
+    func setupViewModel(viewModel: PhotoViewModel) {
+        photoImageView.image = UIImage(named: viewModel.name)
     }
 }

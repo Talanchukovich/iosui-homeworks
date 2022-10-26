@@ -44,6 +44,16 @@ class FeedView: UIView {
         return postButton
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setView()
+        addTargets()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func addTargets(){
         postButton1.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
         postButton2.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
@@ -54,13 +64,12 @@ class FeedView: UIView {
         completion?(title)
     }
     
-    func setView(){
+    private func setView(){
         self.backgroundColor = .lightGray
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonStuck)
         buttonStuck.addArrangedSubview(postButton1)
         buttonStuck.addArrangedSubview(postButton2)
-        addTargets()
         
         NSLayoutConstraint.activate([
             buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),

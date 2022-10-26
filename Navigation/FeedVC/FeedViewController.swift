@@ -16,7 +16,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         setView()
         addCompletion()
-        feedView.setView()
     }
     
     func setView(){
