@@ -8,14 +8,11 @@
 import UIKit
 
 class Photos {
-    
-    var photosName: String?
-    
-    func makePhotosData() -> [String] {
+    var photosName: [String] = {
         var photosName: [String] = []
         for i in 0...19 {
             photosName.append(String(i+1))
         }
         return photosName
-    }
+    }()
 }

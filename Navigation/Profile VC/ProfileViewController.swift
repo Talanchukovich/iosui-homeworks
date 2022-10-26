@@ -8,14 +8,15 @@
 import UIKit
 
 class ProfileViewController: UIViewController{
-    
-    private var posts = Posts().setPosts()
+    private let photosContentViewCell = PhotosContentViewCell()
+    private let posts = Posts().setPosts()
     private lazy var statusText = ""
+    
     private lazy var postsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
-        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
+        tableView.register(PhotosContentViewCell.self, forCellReuseIdentifier: "PhotosContentViewCell")
         tableView.backgroundColor = .lightGray
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -35,8 +36,8 @@ class ProfileViewController: UIViewController{
     }
     
     func setView(){
-        view.addSubview(postsTableView)
         view.backgroundColor = .lightGray
+        view.addSubview(postsTableView)
         
         NSLayoutConstraint.activate([
             postsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -67,16 +68,19 @@ class ProfileViewController: UIViewController{
             }
         }
     }
+    
+    @objc func pushPhotosVC(){
+        let photosViewController = PhotosViewController()
+        navigationController?.pushViewController(photosViewController, animated: true)
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch section {
         case 0:
             return 1
@@ -86,11 +90,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else {
-            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
+        guard let photoCell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosContentViewCell", for: indexPath) as? PhotosContentViewCell else {
+            let cell = postsTableView.dequeueReusableCell(withIdentifier: "PhotosContentViewCell", for: indexPath)
             return cell
         }
+        photoCell.contentView.addSubview(photoCell.collectionView)
+        photoCell.contentView.addSubview(photoCell.photosLabel)
+        photoCell.contentView.addSubview(photoCell.cellAccessoryView)
+        photoCell.clipsToBounds = true
+        photoCell.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pushPhotosVC)))
+        
+        NSLayoutConstraint.activate([
+            photoCell.photosLabel.leadingAnchor.constraint(equalTo: photoCell.contentView.leadingAnchor, constant: 12),
+            photoCell.photosLabel.topAnchor.constraint(equalTo: photoCell.contentView.topAnchor, constant: 12),
+            
+            photoCell.cellAccessoryView.centerYAnchor.constraint(equalTo: photoCell.photosLabel.centerYAnchor),
+            photoCell.cellAccessoryView.trailingAnchor.constraint(equalTo: photoCell.contentView.trailingAnchor, constant: -12),
+            
+            photoCell.collectionView.topAnchor.constraint(equalTo: photoCell.photosLabel.bottomAnchor),
+            photoCell.collectionView.trailingAnchor.constraint(equalTo: photoCell.contentView.trailingAnchor),
+            photoCell.collectionView.leadingAnchor.constraint(equalTo: photoCell.contentView.leadingAnchor),
+            photoCell.collectionView.bottomAnchor.constraint(equalTo: photoCell.contentView.bottomAnchor)
+            ])
         
         guard let postCell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
             let cell = postsTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath)
@@ -114,7 +135,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
             return nil
         }
@@ -140,20 +160,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postsTableView.deselectRow(at: indexPath, animated: true)
-        if indexPath == [1, 0] {
-            let photosViewController = PhotosViewController()
-            navigationController?.pushViewController(photosViewController, animated: true)
-        }
     }
 }
 
 extension ProfileViewController: UITextFieldDelegate {
-
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else {return}
         statusText = text
         updateHeaderView(text: text)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

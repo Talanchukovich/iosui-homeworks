@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8022A1A32907EE1F006AEAEB /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022A1A22907EE1F006AEAEB /* PhotosTableViewCell.swift */; };
+		8022A1A32907EE1F006AEAEB /* PhotosContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022A1A22907EE1F006AEAEB /* PhotosContentViewCell.swift */; };
 		8022A1A5290810B1006AEAEB /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022A1A4290810B1006AEAEB /* PhotosViewController.swift */; };
 		802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */; };
 		802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8022A1A22907EE1F006AEAEB /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		8022A1A22907EE1F006AEAEB /* PhotosContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosContentViewCell.swift; sourceTree = "<group>"; };
 		8022A1A4290810B1006AEAEB /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -67,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				8022A1A4290810B1006AEAEB /* PhotosViewController.swift */,
-				8022A1A22907EE1F006AEAEB /* PhotosTableViewCell.swift */,
 				80B6D30329083885009A476F /* PhotosCollectionViewCell.swift */,
 				80B6D30529083C8D009A476F /* Photos.swift */,
 			);
@@ -121,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				807E040A28FFD80F0085110B /* ProfileViewController.swift */,
+				8022A1A22907EE1F006AEAEB /* PhotosContentViewCell.swift */,
 				80B6D30129057241009A476F /* PostTableViewCell.swift */,
 				802EBD8F29000D07003CFE9E /* ProfileHeaderView.swift */,
 			);
@@ -240,7 +240,7 @@
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
 				807E040B28FFD8100085110B /* ProfileViewController.swift in Sources */,
-				8022A1A32907EE1F006AEAEB /* PhotosTableViewCell.swift in Sources */,
+				8022A1A32907EE1F006AEAEB /* PhotosContentViewCell.swift in Sources */,
 				8022A1A5290810B1006AEAEB /* PhotosViewController.swift in Sources */,
 				807E03F028FFD0CA0085110B /* AppDelegate.swift in Sources */,
 				80B6D30229057241009A476F /* PostTableViewCell.swift in Sources */,

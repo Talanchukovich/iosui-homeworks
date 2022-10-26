@@ -29,9 +29,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+    }
+    
     private func setupView() {
         self.addSubview(photoImageView)
-        self.backgroundColor = .green
         
         NSLayoutConstraint.activate([
             photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

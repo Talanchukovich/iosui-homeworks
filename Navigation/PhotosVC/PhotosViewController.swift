@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    private lazy var photos = Photos().makePhotosData()
+    private lazy var photos = Photos().photosName
     private lazy var itemCount: CGFloat = 2
     
     private lazy var layout: UICollectionViewFlowLayout = {
