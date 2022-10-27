@@ -9,12 +9,13 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
-    private lazy var collectionView = PhotoCollectionView(collectionViewItemCount: 4, scrollDirection: .horizontal,
-                                                          minimumInteritemSpacing: 8, minimumLineSpacing: 8,
-                                                          sectionInset: UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
-    private lazy var layout = collectionView.layout!
+    private lazy var sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    private lazy var contentViewStruct = PhotosCollectionViewStruct(collectionViewItemCount: 4, minimumInteritemSpacing: 8,
+                                                                    minimumLineSpacing: 8, sectionInset: sectionInset,
+                                                                    scrollDirection: .horizontal)
+    private lazy var collectionView = PhotoCollectionView(viewStruct: contentViewStruct)
     
-    lazy var collectionViewHieght: CGFloat = collectionView.setCollectionItemHieght(layout: layout) + layout.sectionInset.top + layout.sectionInset.top
+    lazy var collectionViewHieght: CGFloat = collectionView.setCollectionItemHieght(layout: contentViewStruct.layout) + sectionInset.top + sectionInset.top
     
     lazy var photosLabel: UILabel = {
         let label = UILabel()

@@ -8,6 +8,7 @@
 import UIKit
 
 class Photos {
+    
     var photosName: [String] = {
         var photosName: [String] = []
         for i in 0...19 {

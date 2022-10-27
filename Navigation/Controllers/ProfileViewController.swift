@@ -70,9 +70,12 @@ class ProfileViewController: UIViewController{
     }
     
     @objc func pushPhotosVC(){
-        let collectionView = PhotoCollectionView(collectionViewItemCount: 3, scrollDirection: .vertical,
-                                                 minimumInteritemSpacing: 8, minimumLineSpacing: 8,
-                                                 sectionInset: UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12))
+      
+        let sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+        let collectionStruct = PhotosCollectionViewStruct(collectionViewItemCount: 3, minimumInteritemSpacing: 8,
+                                                          minimumLineSpacing: 8,sectionInset: sectionInset,
+                                                          scrollDirection: .vertical)
+        let collectionView = PhotoCollectionView(viewStruct: collectionStruct)
         let photosViewController = PhotosViewController(collectionView: collectionView)
         navigationController?.pushViewController(photosViewController, animated: true)
     }
@@ -162,7 +165,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return string.first == " " ? false : true
+        return string.first == " " && textField.text?.isEmpty == true ? false : true
     }
     
 }
