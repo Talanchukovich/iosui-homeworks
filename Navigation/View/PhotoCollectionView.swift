@@ -7,35 +7,23 @@
 
 import UIKit
 
-class PhotoCollectionView: UIView {
+class PhotoCollectionView: UICollectionView {
     
     private var photos: [String]
     private var layout: UICollectionViewFlowLayout
     private var collectionViewItemCount: CGFloat
-
-    private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
-        collectionView.backgroundColor = .white
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
     
-    init(viewStruct: PhotosCollectionViewStruct) {
+    init(viewStruct: PhotosCollectionViewModel) {
         self.photos = viewStruct.photos
         self.layout = viewStruct.layout
         self.collectionViewItemCount = viewStruct.collectionViewItemCount
-        super.init(frame: .zero)
+        super.init(frame: .zero, collectionViewLayout: layout)
         
-        self.addSubview(collectionView)
+        self.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
+        self.backgroundColor = .white
+        self.delegate = self
+        self.dataSource = self
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-                                     collectionView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                                     collectionView.rightAnchor.constraint(equalTo: self.rightAnchor),
-                                     collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

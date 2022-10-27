@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post {
+struct PostViewModel {
     var title: String
     var author: String
     var description: String

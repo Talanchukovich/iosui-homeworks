@@ -10,7 +10,7 @@ import UIKit
 class PhotosTableViewCell: UITableViewCell {
     
     private lazy var sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-    private lazy var contentViewStruct = PhotosCollectionViewStruct(collectionViewItemCount: 4, minimumInteritemSpacing: 8,
+    private lazy var contentViewStruct = PhotosCollectionViewModel(collectionViewItemCount: 4, minimumInteritemSpacing: 8,
                                                                     minimumLineSpacing: 8, sectionInset: sectionInset,
                                                                     scrollDirection: .horizontal)
     private lazy var collectionView = PhotoCollectionView(viewStruct: contentViewStruct)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct PhotosCollectionViewStruct {
+struct PhotosCollectionViewModel {
 
     let collectionViewItemCount: CGFloat
     let minimumInteritemSpacing: CGFloat

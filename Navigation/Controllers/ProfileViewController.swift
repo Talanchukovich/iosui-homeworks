@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController{
     @objc func pushPhotosVC(){
       
         let sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
-        let collectionStruct = PhotosCollectionViewStruct(collectionViewItemCount: 3, minimumInteritemSpacing: 8,
+        let collectionStruct = PhotosCollectionViewModel(collectionViewItemCount: 3, minimumInteritemSpacing: 8,
                                                           minimumLineSpacing: 8,sectionInset: sectionInset,
                                                           scrollDirection: .vertical)
         let collectionView = PhotoCollectionView(viewStruct: collectionStruct)
