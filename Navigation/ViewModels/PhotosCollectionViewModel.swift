@@ -1,5 +1,5 @@
 //
-//  PhotosCollectionViewStruct.swift
+//  PhotosCollectionViewModel.swift
 //  Navigation
 //
 //  Created by Андрей Таланчук on 27.10.2022.

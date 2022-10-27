@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  PostViewModel.swift
 //  Navigation
 //
 //  Created by Андрей Таланчук on 19.10.2022.
