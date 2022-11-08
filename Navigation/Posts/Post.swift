@@ -9,4 +9,9 @@ import Foundation
 
 struct Post {
     var title: String
+    var author: String
+    var description: String
+    var imagePost: String
+    var likes: Int
+    var views: Int
 }

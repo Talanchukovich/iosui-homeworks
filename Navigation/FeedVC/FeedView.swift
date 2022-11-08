@@ -9,9 +9,9 @@ import UIKit
 
 class FeedView: UIView {
     
-    var delegate: ButtonDelegate?
+    var completion: ((String)->Void)?
     
-    private let buttonStuck: UIStackView = {
+    private lazy var buttonStuck: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
@@ -20,7 +20,7 @@ class FeedView: UIView {
         return stack
     }()
     
-    private let postButton1: UIButton = {
+    private lazy var postButton1: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
         postButton.tintColor = .white
@@ -32,7 +32,7 @@ class FeedView: UIView {
         return postButton
     }()
     
-    private let postButton2: UIButton = {
+    private lazy var postButton2: UIButton = {
         let postButton = UIButton()
         postButton.backgroundColor = .blue
         postButton.layer.borderWidth = 3
@@ -44,22 +44,14 @@ class FeedView: UIView {
         return postButton
     }()
     
-    private func setLayout(){
-        NSLayoutConstraint.activate([
-            buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            buttonStuck.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            buttonStuck.heightAnchor.constraint(equalToConstant: 110),
-            buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
-    }
-    
-    
     private func addTargets(){
         postButton1.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
         postButton2.addTarget(self, action: #selector(actionPostButton), for: .touchUpInside)
     }
     
     @objc private func actionPostButton(_ sender: UIButton){
-        delegate?.onButtonTap(sender: sender)
+        guard let title = sender.currentTitle else {return}
+        completion?(title)
     }
     
     func setView(){
@@ -68,7 +60,12 @@ class FeedView: UIView {
         self.addSubview(buttonStuck)
         buttonStuck.addArrangedSubview(postButton1)
         buttonStuck.addArrangedSubview(postButton2)
-        setLayout()
         addTargets()
+        
+        NSLayoutConstraint.activate([
+            buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            buttonStuck.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            buttonStuck.heightAnchor.constraint(equalToConstant: 110),
+            buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
     }
 }
