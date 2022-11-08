@@ -119,6 +119,7 @@
 				8022A1A4290810B1006AEAEB /* PhotosViewController.swift */,
 				807E040F28FFDF430085110B /* PostViewController.swift */,
 				802EBD8D28FFF5FD003CFE9E /* InfoViewController.swift */,
+				807E041328FFE6AB0085110B /* Post.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,7 +212,9 @@
 				80C53FE929007988007882C9 /* LogInViewController.swift in Sources */,
 				80B6D30C29099098009A476F /* PhotosTableViewCell.swift in Sources */,
 				802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */,
+
 				80B6D30E2909A106009A476F /* PhotoCollectionView.swift in Sources */,
+				
 				807E040728FFD6EE0085110B /* TabBarController.swift in Sources */,
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
 				80293F5C290A5D7F00C3565C /* PhotosCollectionViewModel.swift in Sources */,
