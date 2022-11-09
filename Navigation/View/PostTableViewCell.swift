@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -56,9 +57,6 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var indexPath: IndexPath?
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -79,11 +77,18 @@ class PostTableViewCell: UITableViewCell {
     
     func setupVieModel(viewModel: PostViewModel){
         authorLabel.text = viewModel.author
-        imagePostView.image = UIImage(named: viewModel.imagePost)
+        let image = UIImage(named: viewModel.imagePost)
+        let errorImage = UIImage(systemName: "")
+        let index = viewModel.indexPath.row
+        if index % 2 == 0 {
+            ImageProcessor().processImage(sourceImage: image ?? errorImage!, filter: .bloom(intensity: 2)) { image in
+                imagePostView.image = image
+            }
+        }else {imagePostView.image = image}
+    
         descriptionLabel.text = viewModel.description
         likesLabel.text = likes.appending(String(viewModel.likes))
         viewsLabel.text = views.appending(String(viewModel.views))
-        indexPath = viewModel.indexPath
     }
     
     private func setupCell(){
