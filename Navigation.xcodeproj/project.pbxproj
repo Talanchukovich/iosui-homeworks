@@ -34,6 +34,10 @@
 		80D0BFA0291B0B3A00FAD475 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E041328FFE6AB0085110B /* Post.swift */; };
 		80D0BFA5291B0FBD00FAD475 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D2FD29056074009A476F /* Posts.swift */; };
 		80D0BFA6291B0FD900FAD475 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30529083C8D009A476F /* Photos.swift */; };
+		80D0BFB8291C14AA00FAD475 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFB7291C14AA00FAD475 /* User.swift */; };
+		80D0BFBA291C156100FAD475 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFB9291C156100FAD475 /* UserService.swift */; };
+		80D0BFBC291C15F200FAD475 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFBB291C15F200FAD475 /* CurrentUserService.swift */; };
+		80D0BFC0291C29BB00FAD475 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFBF291C29BB00FAD475 /* TestUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +107,10 @@
 		80D0BF85291B0A2D00FAD475 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		80D0BF8B291B0A2D00FAD475 /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D0BF92291B0A2D00FAD475 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		80D0BFB7291C14AA00FAD475 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		80D0BFB9291C156100FAD475 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		80D0BFBB291C15F200FAD475 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		80D0BFBF291C29BB00FAD475 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +171,7 @@
 		807E03EE28FFD0CA0085110B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				80D0BFB6291C149500FAD475 /* User */,
 				807E040328FFD59B0085110B /* Controllers */,
 				807E040928FFD7F40085110B /* View */,
 				80293F5D290A617300C3565C /* ViewModels */,
@@ -220,6 +229,17 @@
 				80D0BF92291B0A2D00FAD475 /* StorageServiceTests.swift */,
 			);
 			path = StorageServiceTests;
+			sourceTree = "<group>";
+		};
+		80D0BFB6291C149500FAD475 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				80D0BFB7291C14AA00FAD475 /* User.swift */,
+				80D0BFB9291C156100FAD475 /* UserService.swift */,
+				80D0BFBB291C15F200FAD475 /* CurrentUserService.swift */,
+				80D0BFBF291C29BB00FAD475 /* TestUserService.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +387,15 @@
 			files = (
 				807E041228FFE34D0085110B /* FeedView.swift in Sources */,
 				80C53FE929007988007882C9 /* LogInViewController.swift in Sources */,
+				80D0BFBA291C156100FAD475 /* UserService.swift in Sources */,
 				80B6D30C29099098009A476F /* PhotosTableViewCell.swift in Sources */,
+				80D0BFBC291C15F200FAD475 /* CurrentUserService.swift in Sources */,
 				802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */,
 				80B6D30E2909A106009A476F /* PhotoCollectionView.swift in Sources */,
 				807E040728FFD6EE0085110B /* TabBarController.swift in Sources */,
+				80D0BFC0291C29BB00FAD475 /* TestUserService.swift in Sources */,
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
+				80D0BFB8291C14AA00FAD475 /* User.swift in Sources */,
 				80293F5C290A5D7F00C3565C /* PhotosCollectionViewModel.swift in Sources */,
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
 				807E040B28FFD8100085110B /* ProfileViewController.swift in Sources */,

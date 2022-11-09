@@ -13,7 +13,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "catImage")
         image.contentMode = .scaleAspectFill
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.borderWidth = 3
@@ -25,7 +24,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hipster Cat"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +32,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Укажите статус"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +83,12 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc private func onButtonTap(){
         completion?()
+    }
+    
+    func configureView(user: User) {
+        avatarImageView.image = user.avatar
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
     }
     
     private func setView(){
