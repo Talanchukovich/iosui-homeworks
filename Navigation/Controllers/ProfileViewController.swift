@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController{
     
@@ -36,7 +37,11 @@ class ProfileViewController: UIViewController{
     }
     
     func setView(){
+        #if DEBUG
+        view.backgroundColor = .green
+        #else
         view.backgroundColor = .systemGray6
+        #endif
         view.addSubview(postsTableView)
         
         NSLayoutConstraint.activate([

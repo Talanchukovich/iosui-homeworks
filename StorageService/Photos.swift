@@ -7,13 +7,15 @@
 
 import UIKit
 
-class Photos {
+public class Photos {
     
-    var photosName: [String] = {
+    public var photosName: [String] = {
         var photosName: [String] = []
         for i in 0...19 {
             photosName.append(String(i+1))
         }
         return photosName
     }()
+    
+    public init() {}
 }
