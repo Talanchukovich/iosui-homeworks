@@ -94,34 +94,34 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(setStatusButton)
         
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(16)
-            make.leading.equalTo(self.snp.leading).inset(16)
+            make.top.equalTo(self.snp.top).offset(16)
+            make.leading.equalTo(self.snp.leading).offset(16)
             make.height.equalTo(100)
             make.width.equalTo(100)
         }
         
         fullNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).inset(27)
+            make.top.equalTo(self.snp.top).offset(27)
             make.centerX.equalTo(self.snp.centerX)
         }
         
         setStatusButton.snp.makeConstraints { make in
-            make.top.equalTo(avatarImageView.snp.bottom).inset(-16)
-            make.leading.equalTo(self.snp.leading).inset(16)
-            make.trailing.equalTo(self.snp.trailing).inset(16)
-            make.bottom.equalTo(self.snp.bottom).inset(16)
+            make.top.equalTo(avatarImageView.snp.bottom).offset(16)
+            make.leading.equalTo(self.snp.leading).offset(16)
+            make.trailing.equalTo(self.snp.trailing).offset(-16)
+            make.bottom.equalTo(self.snp.bottom).offset(-16)
             make.height.equalTo(50)
         }
         
         statusLabel.snp.makeConstraints { make in
             make.leading.equalTo(fullNameLabel.snp.leading)
-            make.bottom.equalTo(setStatusButton.snp.top).inset(16).inset(-60)
+            make.bottom.equalTo(setStatusButton.snp.top).offset(-60)
         }
         
         statusTextField.snp.makeConstraints { make in
-            make.top.equalTo(statusLabel.snp.bottom).inset(-10)
+            make.top.equalTo(statusLabel.snp.bottom).offset(10)
             make.leading.equalTo(statusLabel.snp.leading)
-            make.trailing.equalTo(statusLabel.snp.trailing)
+            make.trailing.equalTo(setStatusButton.snp.trailing)
             make.height.equalTo(40)
         }
     }
