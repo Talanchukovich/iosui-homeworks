@@ -25,7 +25,6 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -33,7 +32,6 @@ class PostTableViewCell: UITableViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.backgroundColor = .black
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -42,7 +40,6 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .systemGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -50,14 +47,12 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var viewsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -100,26 +95,34 @@ class PostTableViewCell: UITableViewCell {
         self.addSubview(likesLabel)
         self.addSubview(viewsLabel)
         
-        NSLayoutConstraint.activate([
-            authorLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            authorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            authorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            
-            imagePostView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
-            imagePostView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imagePostView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imagePostView.heightAnchor.constraint(equalToConstant: self.bounds.width),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: imagePostView.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            
-            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            likesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            likesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-            
-            viewsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            viewsLabel.firstBaselineAnchor.constraint(equalTo: likesLabel.firstBaselineAnchor)
-        ])
+        authorLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(16)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.trailing.equalTo(self.snp.trailing).inset(16)
+        }
+        
+        imagePostView.snp.makeConstraints { make in
+            make.top.equalTo(authorLabel.snp.bottom).inset(-16)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+            make.height.equalTo(self.bounds.width)
+        }
+        
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(imagePostView.snp.bottom).inset(-16)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.trailing.equalTo(self.snp.trailing).inset(16)
+        }
+        
+        likesLabel.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.bottom).inset(-16)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.bottom.equalTo(self.snp.bottom).inset(16)
+        }
+        
+        viewsLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(self.snp.trailing).inset(16)
+            make.firstBaseline.equalTo(likesLabel.snp.firstBaseline)
+        }
     }
 }

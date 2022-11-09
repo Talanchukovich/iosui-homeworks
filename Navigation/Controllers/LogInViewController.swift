@@ -15,21 +15,18 @@ class LogInViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
         scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var logoImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "logo")
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
@@ -41,7 +38,6 @@ class LogInViewController: UIViewController {
         stuck.layer.borderWidth = 0.5
         stuck.layer.cornerRadius = 10
         stuck.backgroundColor = .systemGray6
-        stuck.translatesAutoresizingMaskIntoConstraints = false
         return stuck
     }()
     
@@ -52,7 +48,6 @@ class LogInViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.placeholder = "Email or phone"
         textField.backgroundColor = .systemGray6
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -64,14 +59,12 @@ class LogInViewController: UIViewController {
         textField.placeholder = "Password"
         textField.backgroundColor = .systemGray6
         textField.isSecureTextEntry = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private lazy var mideLineTextFieldStuckView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -87,7 +80,6 @@ class LogInViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(pushProfileVC), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -116,47 +108,60 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(contentView)
         loginViews.forEach({scrollView.addSubview($0)})
         
-        NSLayoutConstraint.activate([
-            
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            
-            logoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100),
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-            loginPasswordTextFieldsStuckView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginPasswordTextFieldsStuckView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginPasswordTextFieldsStuckView.heightAnchor.constraint(equalToConstant: 100),
-            loginPasswordTextFieldsStuckView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120),
-            
-            mideLineTextFieldStuckView.centerYAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.centerYAnchor),
-            mideLineTextFieldStuckView.trailingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.trailingAnchor),
-            mideLineTextFieldStuckView.leadingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.leadingAnchor),
-            mideLineTextFieldStuckView.heightAnchor.constraint(equalToConstant: 0.5),
-            
-            loginTextField.leadingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.leadingAnchor, constant: 10),
-            loginTextField.trailingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.trailingAnchor, constant: -10),
-            loginTextField.centerYAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.centerYAnchor, constant: -25),
-            
-            passwordTextField.leadingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.leadingAnchor, constant: 10),
-            passwordTextField.trailingAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.trailingAnchor, constant: -10),
-            passwordTextField.centerYAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.centerYAnchor, constant: 25),
-            
-            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.topAnchor.constraint(equalTo: loginPasswordTextFieldsStuckView.bottomAnchor, constant: 16),
-            loginButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.top)
+            make.leading.equalTo(scrollView.snp.leading)
+            make.trailing.equalTo(scrollView.snp.trailing)
+            make.bottom.equalTo(scrollView.snp.bottom)
+            make.width.equalTo(UIScreen.main.bounds.width)
+        }
+        
+        logoImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.top.equalTo(contentView.snp.top).inset(120)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+        }
+        
+        loginPasswordTextFieldsStuckView.snp.makeConstraints { make in
+            make.top.equalTo(logoImageView.snp.bottom).inset(-120)
+            make.leading.equalTo(contentView.snp.leading).inset(16)
+            make.trailing.equalTo(contentView.snp.trailing).inset(16)
+            make.height.equalTo(100)
+        }
+        
+        mideLineTextFieldStuckView.snp.makeConstraints { make in
+            make.centerY.equalTo(loginPasswordTextFieldsStuckView.snp.centerY)
+            make.leading.equalTo(loginPasswordTextFieldsStuckView.snp.leading)
+            make.trailing.equalTo(loginPasswordTextFieldsStuckView.snp.trailing)
+            make.height.equalTo(0.5)
+        }
+        
+        loginTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(loginPasswordTextFieldsStuckView.snp.centerY).offset(25)
+            make.leading.equalTo(loginPasswordTextFieldsStuckView.snp.leading).inset(10)
+            make.trailing.equalTo(loginPasswordTextFieldsStuckView.snp.trailing).inset(10)
+        }
+        
+        passwordTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(loginPasswordTextFieldsStuckView.snp.centerY).offset(-25)
+            make.leading.equalTo(loginPasswordTextFieldsStuckView.snp.leading).inset(10)
+            make.trailing.equalTo(loginPasswordTextFieldsStuckView.snp.trailing).inset(10)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(loginPasswordTextFieldsStuckView.snp.bottom).inset(-16)
+            make.leading.equalTo(contentView.snp.leading).inset(16)
+            make.trailing.equalTo(contentView.snp.trailing).inset(16)
+            make.height.equalTo(50)
+        }
     }
     
     func addDelegate(){

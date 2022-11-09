@@ -19,7 +19,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         image.layer.borderWidth = 3
         image.layer.cornerRadius = 50
         image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
@@ -28,7 +27,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         label.text = "Hipster Cat"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -37,7 +35,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         label.text = "Укажите статус"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -52,7 +49,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.borderStyle = .roundedRect
         textField.clipsToBounds = true
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -66,7 +62,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -98,27 +93,36 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         self.addSubview(statusTextField)
         self.addSubview(setStatusButton)
         
-        NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            setStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-            
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -60),
-            
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
-            statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
-            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40)])
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(16)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.height.equalTo(100)
+            make.width.equalTo(100)
+        }
+        
+        fullNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).inset(27)
+            make.centerX.equalTo(self.snp.centerX)
+        }
+        
+        setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).inset(-16)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.trailing.equalTo(self.snp.trailing).inset(16)
+            make.bottom.equalTo(self.snp.bottom).inset(16)
+            make.height.equalTo(50)
+        }
+        
+        statusLabel.snp.makeConstraints { make in
+            make.leading.equalTo(fullNameLabel.snp.leading)
+            make.bottom.equalTo(setStatusButton.snp.top).inset(16).inset(-60)
+        }
+        
+        statusTextField.snp.makeConstraints { make in
+            make.top.equalTo(statusLabel.snp.bottom).inset(-10)
+            make.leading.equalTo(statusLabel.snp.leading)
+            make.trailing.equalTo(statusLabel.snp.trailing)
+            make.height.equalTo(40)
+        }
     }
 }
