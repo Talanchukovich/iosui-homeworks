@@ -21,12 +21,12 @@ class FeedViewController: UIViewController {
     func setView(){
         self.title = "Новости"
         view.addSubview(feedView)
-        
-        NSLayoutConstraint.activate([
-            feedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            feedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            feedView.topAnchor.constraint(equalTo: view.topAnchor),
-            feedView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        feedView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+        }
     }
     
     func addCompletion(){

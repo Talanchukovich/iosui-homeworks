@@ -16,7 +16,6 @@ class FeedView: UIView {
         stack.axis = .vertical
         stack.spacing = 10
         stack.distribution = .fillEqually
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -28,7 +27,6 @@ class FeedView: UIView {
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.setTitle("Открыть пост1", for: .normal)
         postButton.layer.cornerRadius = 25
-        postButton.translatesAutoresizingMaskIntoConstraints = false
         return postButton
     }()
     
@@ -40,7 +38,6 @@ class FeedView: UIView {
         postButton.setTitle("Открыть пост2", for: .normal)
         postButton.tintColor = .white
         postButton.layer.cornerRadius = 25
-        postButton.translatesAutoresizingMaskIntoConstraints = false
         return postButton
     }()
     
@@ -66,15 +63,15 @@ class FeedView: UIView {
     
     private func setView(){
         self.backgroundColor = .lightGray
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonStuck)
         buttonStuck.addArrangedSubview(postButton1)
         buttonStuck.addArrangedSubview(postButton2)
         
-        NSLayoutConstraint.activate([
-            buttonStuck.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            buttonStuck.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            buttonStuck.heightAnchor.constraint(equalToConstant: 110),
-            buttonStuck.widthAnchor.constraint(equalToConstant: 200)])
+        buttonStuck.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(200)
+            make.height.equalTo(110)
+        }
     }
 }
