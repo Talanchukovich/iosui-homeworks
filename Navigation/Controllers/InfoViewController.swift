@@ -17,7 +17,6 @@ class InfoViewController: UIViewController {
         allerButton.layer.borderColor = UIColor.blue.cgColor
         allerButton.layer.borderWidth = 5
         allerButton.layer.cornerRadius = 25
-        allerButton.translatesAutoresizingMaskIntoConstraints = false
         return allerButton
     }()
     
@@ -27,11 +26,13 @@ class InfoViewController: UIViewController {
     }
     
     private func setLayout(){
-        NSLayoutConstraint.activate([
-            allerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            allerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            allerButton.heightAnchor.constraint(equalToConstant: 50),
-            allerButton.widthAnchor.constraint(equalToConstant: 200)])
+        
+        allerButton.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+        }
     }
     
     private func setAlertButton(){

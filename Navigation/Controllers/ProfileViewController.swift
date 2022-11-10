@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController{
         tableView.backgroundColor = .systemGray6
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = CGFloat(0)
@@ -54,11 +53,12 @@ class ProfileViewController: UIViewController{
         #endif
         view.addSubview(postsTableView)
         
-        NSLayoutConstraint.activate([
-            postsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            postsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            postsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            postsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+        postsTableView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp_topMargin)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+        }
     }
     
     func addDelegate(){
@@ -85,11 +85,11 @@ class ProfileViewController: UIViewController{
     }
     
     @objc func pushPhotosVC(){
-      
+        
         let sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         let collectionStruct = PhotosCollectionViewModel(collectionViewItemCount: 3, minimumInteritemSpacing: 8,
-                                                          minimumLineSpacing: 8,sectionInset: sectionInset,
-                                                          scrollDirection: .vertical)
+                                                         minimumLineSpacing: 8,sectionInset: sectionInset,
+                                                         scrollDirection: .vertical)
         let collectionView = PhotoCollectionView(viewStruct: collectionStruct)
         let photosViewController = PhotosViewController(collectionView: collectionView)
         navigationController?.pushViewController(photosViewController, animated: true)
