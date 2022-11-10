@@ -187,7 +187,9 @@ class LogInViewController: UIViewController {
         #else
         let service = CurrentUserService()
         #endif
-        guard let user = service.checkLogin(login: activTextfield?.text ?? "") else {return self.present(wrongLoginAlert, animated: true)}
+        guard let user = service.checkLogin(login: activTextfield?.text ?? "") else {return
+            self.present(wrongLoginAlert, animated: true)
+        }
         let profileViewController = ProfileViewController(user: user)
         navigationController?.pushViewController(profileViewController, animated: true)
     }
