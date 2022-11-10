@@ -22,14 +22,12 @@ class PhotosTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .black
         label.text = "Photos"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     lazy var cellAccessoryView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "arrow.right")
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -49,22 +47,24 @@ class PhotosTableViewCell: UITableViewCell {
         self.contentView.addSubview(cellAccessoryView)
         self.contentView.addSubview(collectionView)
         
-        NSLayoutConstraint.activate([
-            
-            photosLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
-            photosLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
-            
-            cellAccessoryView.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
-            cellAccessoryView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
-            
-            collectionView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            
-            collectionView.heightAnchor.constraint(equalToConstant: collectionViewHieght),
-            collectionView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
-        ])
+        photosLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.contentView.snp.leading).inset(12)
+            make.top.equalTo(self.contentView.snp.top).inset(12)
+        }
+        
+        cellAccessoryView.snp.makeConstraints { make in
+            make.centerY.equalTo(photosLabel.snp.centerY)
+            make.trailing.equalTo(self.contentView.snp.trailing).inset(12)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(photosLabel.snp.bottom)
+            make.leading.equalTo(self.contentView.snp.leading)
+            make.trailing.equalTo(self.contentView.snp.trailing)
+            make.bottom.equalTo(self.contentView.snp.bottom)
+            make.height.equalTo(collectionViewHieght)
+            make.width.equalTo(UIScreen.main.bounds.width)
+        }
     }
 }
 
