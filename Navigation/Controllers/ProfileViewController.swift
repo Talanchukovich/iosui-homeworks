@@ -10,6 +10,7 @@ import StorageService
 
 class ProfileViewController: UIViewController{
     
+    private let user: User
     private let posts = Posts().setPosts()
     private lazy var statusText = ""
     
@@ -27,6 +28,15 @@ class ProfileViewController: UIViewController{
         }
         return tableView
     }()
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +142,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else {
             return nil
         }
+        
         profileHeaderView.statusTextField.delegate = self
+        profileHeaderView.configureView(user: user)
         profileHeaderView.completion = {[weak self] in
             guard let text = self?.statusText else {return}
             self?.hideKeyBoard()

@@ -174,8 +174,23 @@ class LogInViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
+    let wrongLoginAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Не правильный логин", message: "Вы ввели не правильный логин", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Закрыть", style: .cancel)
+        alert.addAction(action)
+        return alert
+    }()
+    
     @objc private func pushProfileVC() {
-        let profileViewController = ProfileViewController()
+        #if DEBUG
+        let service = TestUserService()
+        #else
+        let service = CurrentUserService()
+        #endif
+        guard let user = service.checkLogin(login: activTextfield?.text ?? "") else {return
+            self.present(wrongLoginAlert, animated: true)
+        }
+        let profileViewController = ProfileViewController(user: user)
         navigationController?.pushViewController(profileViewController, animated: true)
     }
     
