@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24E52E71B49053AC0EB54F30 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9361A69679F5A3537F35A382 /* Pods_Navigation.framework */; };
+		24E52E71B49053AC0EB54F30 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A934B90502F4F9C6F98B08F /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E3175F1E3936EFCD7F53E8 /* Pods_StorageService.framework */; };
 		8022A1A5290810B1006AEAEB /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022A1A4290810B1006AEAEB /* PhotosViewController.swift */; };
 		80293F5C290A5D7F00C3565C /* PhotosCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80293F5B290A5D7F00C3565C /* PhotosCollectionViewModel.swift */; };
@@ -22,6 +22,19 @@
 		807E040D28FFD84A0085110B /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E040C28FFD84A0085110B /* FeedViewController.swift */; };
 		807E041028FFDF430085110B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E040F28FFDF430085110B /* PostViewController.swift */; };
 		807E041228FFE34D0085110B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E041128FFE34D0085110B /* FeedView.swift */; };
+		80A4B309291D3DDB00321E6A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 80D0BFB4291BEEDF00FAD475 /* iOSIntPackage */; };
+		80A4B315291D3F5900321E6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B311291D3F5800321E6A /* User.swift */; };
+		80A4B316291D3F5900321E6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B311291D3F5800321E6A /* User.swift */; };
+		80A4B317291D3F5900321E6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B311291D3F5800321E6A /* User.swift */; };
+		80A4B318291D3F5900321E6A /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B312291D3F5800321E6A /* TestUserService.swift */; };
+		80A4B319291D3F5900321E6A /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B312291D3F5800321E6A /* TestUserService.swift */; };
+		80A4B31A291D3F5900321E6A /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B312291D3F5800321E6A /* TestUserService.swift */; };
+		80A4B31B291D3F5900321E6A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B313291D3F5900321E6A /* UserService.swift */; };
+		80A4B31C291D3F5900321E6A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B313291D3F5900321E6A /* UserService.swift */; };
+		80A4B31D291D3F5900321E6A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B313291D3F5900321E6A /* UserService.swift */; };
+		80A4B31E291D3F5900321E6A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B314291D3F5900321E6A /* CurrentUserService.swift */; };
+		80A4B31F291D3F5900321E6A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B314291D3F5900321E6A /* CurrentUserService.swift */; };
+		80A4B320291D3F5900321E6A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4B314291D3F5900321E6A /* CurrentUserService.swift */; };
 		80B6D30229057241009A476F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30129057241009A476F /* PostTableViewCell.swift */; };
 		80B6D30429083885009A476F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30329083885009A476F /* PhotosCollectionViewCell.swift */; };
 		80B6D30C29099098009A476F /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30B29099098009A476F /* PhotosTableViewCell.swift */; };
@@ -36,10 +49,10 @@
 		80D0BFA0291B0B3A00FAD475 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E041328FFE6AB0085110B /* Post.swift */; };
 		80D0BFA5291B0FBD00FAD475 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D2FD29056074009A476F /* Posts.swift */; };
 		80D0BFA6291B0FD900FAD475 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6D30529083C8D009A476F /* Photos.swift */; };
-		80D0BFB8291C14AA00FAD475 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFB7291C14AA00FAD475 /* User.swift */; };
-		80D0BFBA291C156100FAD475 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFB9291C156100FAD475 /* UserService.swift */; };
-		80D0BFBC291C15F200FAD475 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFBB291C15F200FAD475 /* CurrentUserService.swift */; };
-		80D0BFC0291C29BB00FAD475 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0BFBF291C29BB00FAD475 /* TestUserService.swift */; };
+		80D0BFB8291C14AA00FAD475 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		80D0BFBA291C156100FAD475 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		80D0BFBC291C15F200FAD475 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		80D0BFC0291C29BB00FAD475 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +114,10 @@
 		807E040F28FFDF430085110B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		807E041128FFE34D0085110B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		807E041328FFE6AB0085110B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		80A4B311291D3F5800321E6A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		80A4B312291D3F5800321E6A /* TestUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		80A4B313291D3F5900321E6A /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		80A4B314291D3F5900321E6A /* CurrentUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		80B6D2FD29056074009A476F /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		80B6D30129057241009A476F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		80B6D30329083885009A476F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -120,9 +137,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80D0BFB5291BEEDF00FAD475 /* iOSIntPackage in Frameworks */,
+				80A4B309291D3DDB00321E6A /* iOSIntPackage in Frameworks */,
 				80D0BF97291B0A2D00FAD475 /* StorageService.framework in Frameworks */,
-				24E52E71B49053AC0EB54F30 /* Pods_Navigation.framework in Frameworks */,
+				24E52E71B49053AC0EB54F30 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +156,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80D0BF8C291B0A2D00FAD475 /* StorageService.framework in Frameworks */,
-				9DFE514F433107BC2B6E6D12 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +195,7 @@
 		807E03EE28FFD0CA0085110B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				80D0BFB6291C149500FAD475 /* User */,
+				80A4B310291D3F3600321E6A /* User */,
 				807E040328FFD59B0085110B /* Controllers */,
 				807E040928FFD7F40085110B /* View */,
 				80293F5D290A617300C3565C /* ViewModels */,
@@ -219,6 +235,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		80A4B310291D3F3600321E6A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				80A4B314291D3F5900321E6A /* CurrentUserService.swift */,
+				80A4B312291D3F5800321E6A /* TestUserService.swift */,
+				80A4B311291D3F5800321E6A /* User.swift */,
+				80A4B313291D3F5900321E6A /* UserService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		80D0BF83291B0A2D00FAD475 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +269,6 @@
 		B0AB2746FF1CCB727A77B53A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9361A69679F5A3537F35A382 /* Pods_Navigation.framework */,
 				21E3175F1E3936EFCD7F53E8 /* Pods_StorageService.framework */,
 				15D1393A78D4C2B337C54C3C /* Pods_StorageService_StorageServiceTests.framework */,
 			);
@@ -253,11 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				36E07C73C33EAE0EB46B012F /* Pods-Navigation.debug.xcconfig */,
-				F292D42CA4E54F3EA2A4CC7D /* Pods-Navigation.release.xcconfig */,
 				00C9B9C36191DB05E4817DFC /* Pods-StorageService.debug.xcconfig */,
-				B519C2CBB3821E4AA7ED3A93 /* Pods-StorageService.release.xcconfig */,
-				BA71754921CE7E7E70D7DAEA /* Pods-StorageService-StorageServiceTests.debug.xcconfig */,
-				E3C1B13922AB0ABA2EE36B73 /* Pods-StorageService-StorageServiceTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -503,15 +525,17 @@
 			files = (
 				807E041228FFE34D0085110B /* FeedView.swift in Sources */,
 				80C53FE929007988007882C9 /* LogInViewController.swift in Sources */,
-				80D0BFBA291C156100FAD475 /* UserService.swift in Sources */,
+				80A4B318291D3F5900321E6A /* TestUserService.swift in Sources */,
+				80D0BFBA291C156100FAD475 /* (null) in Sources */,
 				80B6D30C29099098009A476F /* PhotosTableViewCell.swift in Sources */,
-				80D0BFBC291C15F200FAD475 /* CurrentUserService.swift in Sources */,
+				80D0BFBC291C15F200FAD475 /* (null) in Sources */,
 				802EBD9029000D07003CFE9E /* ProfileHeaderView.swift in Sources */,
+				80A4B31B291D3F5900321E6A /* UserService.swift in Sources */,
 				80B6D30E2909A106009A476F /* PhotoCollectionView.swift in Sources */,
 				807E040728FFD6EE0085110B /* TabBarController.swift in Sources */,
-				80D0BFC0291C29BB00FAD475 /* TestUserService.swift in Sources */,
+				80D0BFC0291C29BB00FAD475 /* (null) in Sources */,
 				807E041028FFDF430085110B /* PostViewController.swift in Sources */,
-				80D0BFB8291C14AA00FAD475 /* User.swift in Sources */,
+				80D0BFB8291C14AA00FAD475 /* (null) in Sources */,
 				80293F5C290A5D7F00C3565C /* PhotosCollectionViewModel.swift in Sources */,
 				802EBD8E28FFF5FD003CFE9E /* InfoViewController.swift in Sources */,
 				807E040B28FFD8100085110B /* ProfileViewController.swift in Sources */,
@@ -521,6 +545,8 @@
 				80B6D30429083885009A476F /* PhotosCollectionViewCell.swift in Sources */,
 				807E040D28FFD84A0085110B /* FeedViewController.swift in Sources */,
 				807E03F228FFD0CA0085110B /* SceneDelegate.swift in Sources */,
+				80A4B31E291D3F5900321E6A /* CurrentUserService.swift in Sources */,
+				80A4B315291D3F5900321E6A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,9 +554,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A4B31C291D3F5900321E6A /* UserService.swift in Sources */,
 				80D0BFA6291B0FD900FAD475 /* Photos.swift in Sources */,
 				80D0BF86291B0A2D00FAD475 /* StorageService.docc in Sources */,
+				80A4B319291D3F5900321E6A /* TestUserService.swift in Sources */,
 				80D0BFA5291B0FBD00FAD475 /* Posts.swift in Sources */,
+				80A4B316291D3F5900321E6A /* User.swift in Sources */,
+				80A4B31F291D3F5900321E6A /* CurrentUserService.swift in Sources */,
 				80D0BFA0291B0B3A00FAD475 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,7 +569,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A4B320291D3F5900321E6A /* CurrentUserService.swift in Sources */,
+				80A4B31D291D3F5900321E6A /* UserService.swift in Sources */,
+				80A4B317291D3F5900321E6A /* User.swift in Sources */,
 				80D0BF93291B0A2D00FAD475 /* StorageServiceTests.swift in Sources */,
+				80A4B31A291D3F5900321E6A /* TestUserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +754,6 @@
 		};
 		807E040228FFD0D00085110B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F292D42CA4E54F3EA2A4CC7D /* Pods-Navigation.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -780,7 +813,6 @@
 		};
 		80D0BF9B291B0A2D00FAD475 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B519C2CBB3821E4AA7ED3A93 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -811,7 +843,6 @@
 		};
 		80D0BF9C291B0A2D00FAD475 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA71754921CE7E7E70D7DAEA /* Pods-StorageService-StorageServiceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -831,7 +862,6 @@
 		};
 		80D0BF9D291B0A2D00FAD475 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3C1B13922AB0ABA2EE36B73 /* Pods-StorageService-StorageServiceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
